@@ -1,0 +1,23 @@
+reporting-disabled = true
+
+[meta]
+dir = "__DATA_DIRECTORY__/meta"
+
+[data]
+dir = "__DATA_DIRECTORY__/data"
+wal-dir = "__DATA_DIRECTORY__/wal"
+
+# Use tsi1 to support high-cardinality
+index-version = "tsi1"
+max-series-per-database = 0
+max-values-per-tag = 0
+
+# TODO: autotune cache-max-memory-size?
+
+[http]
+enabled = true
+bind-address = ":__PORT__"
+auth-enabled = true
+https-enabled = true
+https-certificate = "__SSL_CERTIFICATE_FILE__"
+https-private-key = "__SSL_KEY_FILE__"
