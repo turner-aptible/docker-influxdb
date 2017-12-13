@@ -6,10 +6,15 @@ ENV INFLUXDB_GROUP influxdb
 RUN groupadd -r "$INFLUXDB_GROUP" \
  && useradd -r -g "$INFLUXDB_GROUP" "$INFLUXDB_USER"
 
+ENV INFLUXDB_VERSION <%= ENV.fetch('INFLUXDB_VERSION') %>
 ADD script /script
 RUN /script/install-influxdb.sh
 
 RUN apt-install pwgen sudo
+
+# TODO: Remove these and install it specs
+# TODO: move psmisc here too
+RUN apt-install --no-install-recommends --no-install-suggests python-minimal curl psmisc
 
 ENV DATA_DIRECTORY /var/db
 ENV PORT 8086

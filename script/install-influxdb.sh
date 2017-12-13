@@ -26,7 +26,7 @@ rm "$GO_FILENAME"
 
 
 PKG="github.com/influxdata/influxdb"
-REF="v1.4.2"
+REF="v${INFLUXDB_VERSION}"
 go get "$PKG"
 cd "${GOPATH}/src/${PKG}"
 
