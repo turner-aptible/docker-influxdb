@@ -40,6 +40,8 @@ ensure_ssl_files() {
 }
 
 ensure_influxdb_configuration() {
+  local host="$1"
+
   ensure_ssl_files
 
   INFLUXDB_CONFIGURATION="$(mktemp)"
@@ -49,6 +51,7 @@ ensure_influxdb_configuration() {
     | sed "s:__DATA_DIRECTORY__:${DATA_DIRECTORY}:g" \
     | sed "s:__SSL_CERTIFICATE_FILE__:${SSL_CERTIFICATE_FILE}:g" \
     | sed "s:__SSL_KEY_FILE__:${SSL_KEY_FILE}:g" \
+    | sed "s:__HOST__:${host}:g" \
     | sed "s:__PORT__:${PORT}:g" \
     > "$INFLUXDB_CONFIGURATION"
 
@@ -98,14 +101,14 @@ wait_for_exit() {
 }
 
 if [[ "$#" -eq 0 ]]; then
-  ensure_influxdb_configuration
+  ensure_influxdb_configuration "0.0.0.0"
   exec sudo -u "$INFLUXDB_USER" -g "$INFLUXDB_GROUP" \
     influxd -config "$INFLUXDB_CONFIGURATION"
 
 elif [[ "$1" == "--initialize" ]]; then
   chown -R "${INFLUXDB_USER}:${INFLUXDB_GROUP}" "$DATA_DIRECTORY"
 
-  ensure_influxdb_configuration
+  ensure_influxdb_configuration "127.0.0.1"
 
   PID_FILE="$(mktemp)"
   chown "${INFLUXDB_USER}:${INFLUXDB_GROUP}" "$PID_FILE"

@@ -16,7 +16,7 @@ max-values-per-tag = 0
 
 [http]
 enabled = true
-bind-address = ":__PORT__"
+bind-address = "__HOST__:__PORT__"
 auth-enabled = true
 https-enabled = true
 https-certificate = "__SSL_CERTIFICATE_FILE__"
