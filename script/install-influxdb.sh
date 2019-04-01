@@ -13,8 +13,6 @@ apt-get update
 apt-get -y install "${BUILD_DEPS[@]}"
 rm -rf /var/lib/apt/lists/*
 
-GO_VERSION="1.9.2"
-GO_SHA256SUM="de874549d9a8d8d8062be05808509c09a88a248e77ec14eb77453530829ac02b"
 GO_FILENAME="go${GO_VERSION}.linux-amd64.tar.gz"
 
 cd /tmp
