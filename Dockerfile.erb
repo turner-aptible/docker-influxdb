@@ -7,6 +7,8 @@ RUN groupadd -r "$INFLUXDB_GROUP" \
  && useradd -r -g "$INFLUXDB_GROUP" "$INFLUXDB_USER"
 
 ENV INFLUXDB_VERSION <%= ENV.fetch('INFLUXDB_VERSION') %>
+ENV GO_VERSION <%= ENV.fetch('GO_VERSION') %>
+ENV GO_SHA256SUM <%= ENV.fetch('GO_SHA256SUM') %>
 ADD script /script
 RUN /script/install-influxdb.sh
 
