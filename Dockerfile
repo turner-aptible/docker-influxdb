@@ -19,7 +19,8 @@ ENV GO_SHA256SUM ${GO_SHA256SUM}
 
 ADD script /script
 ARG INFLUXDB_INSTALL_METHOD
-RUN /script/install-influxdb-${INFLUXDB_INSTALL_METHOD}.sh
+ENV INFLUXDB_INSTALL_METHOD ${INFLUXDB_INSTALL_METHOD}
+RUN /script/install-influxdb-$INFLUXDB_INSTALL_METHOD.sh
 
 RUN apt-install pwgen sudo
 
