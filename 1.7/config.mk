@@ -1,6 +1,0 @@
-export INFLUXDB_VERSION = 1.7.10
-export INFLUXDB_INSTALL_METHOD = dpkg-deb
-export INFLUXDB_DEB_SHA256 = ee6e4ccc20aa5103343a0358f5177e66bd137178f00a769b7bb2bed76e8d67e8
-
-export GO_VERSION = unused
-export GO_SHA256SUM = unused

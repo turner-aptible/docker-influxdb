@@ -20,12 +20,6 @@ jobs:
             install_method: 'dpkg-deb'
             deb_sha: 'ee6e4ccc20aa5103343a0358f5177e66bd137178f00a769b7bb2bed76e8d67e8'
             debian_version: 'stretch'
-          - version: '1.4.2'
-            tag: '1.4'
-            install_method: 'go-build'
-            go_version: '1.10.8'
-            go_sha: 'd8626fb6f9a3ab397d88c483b576be41fa81eefcec2fd18562c87626dbb3c39e'
-            debian_version: 'stretch'
     runs-on: ubuntu-latest
     env:
       REPOSITORY: influxdb
@@ -75,8 +69,6 @@ jobs:
           "DEBIAN_VERSION=${{ matrix.debian_version }}"
           "INFLUXDB_INSTALL_METHOD=${{ matrix.install_method }}"
           "INFLUXDB_DEB_SHA256=${{ matrix.deb_sha }}"
-          "GO_VERSION=${{ matrix.go_version }}"
-          "GO_SHA256SUM=${{ matrix.go_sha }}"
         file: ./Dockerfile
         push: true
         target: ${{ steps.metadata.outputs.images }}
